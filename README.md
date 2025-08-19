@@ -1,6 +1,6 @@
 # Migrate from Pihole v6 to Adguard Home
 
-This tool will take a Teleporter export and convert it into Adguard Home style yaml.
+This tool will take a Teleporter export and convert it into Adguard Home style yaml (or in the case of allowlists / blocklists, Adblock-style rulesets)
 
 ## Steps
 
@@ -19,7 +19,8 @@ This tool will take a Teleporter export and convert it into Adguard Home style y
 5. Run the script.
 
    ```bash
-   python3 migrationtool.py pihole.xxxxxx.zip
+   python3 migrationtool.py pi-hole.xxxxxx.zip
    ```
 
-6. The script will dump an adlist.yaml file on disk that you can copy and paste into your AdGuardHome.yaml file. Remember that in order to edit AdGuardHome.yaml you need to stop the service first. `AdGuardHome -s stop`. Once you've pasted in your values and made sure your indentation is right, start it again. `AdGuardHome -s start`
+6. Follow the instructions on screen to update your AdGuardHome.yaml. Once done, start up AdGuardHome again. `AdGuardHome -s start`
+7. Lastly, you can import your custom allowlists and blocklists by directly pasting them into the "Custom Filtering Rules" screen on AdGuardHome.
