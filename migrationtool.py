@@ -3,7 +3,6 @@ import yaml
 import sys
 import os
 import tomllib
-from datetime import datetime, timezone
 import sqlite3
 import dns.resolver
 import socket
@@ -44,7 +43,7 @@ def write_adlists_to_yaml(filename, output_file):
 def extract_domains(filename):
     with sqlite3.connect(filename) as connection:
         cursor = connection.cursor() 
-        adlist_query = 'SELECT type,domain,comment from domainlist;'
+        adlist_query = 'SELECT type,domain from domainlist;'
         cursor.execute(adlist_query)
         all_domains = cursor.fetchall()
 
@@ -71,8 +70,10 @@ def extract_domains(filename):
 
 def write_lines_to_file(filename, data):
     with open(filename, "w") as file:
+        file.write("Add these under Custom Filtering Rules in the AdGuardHome UI.\n\n")
         for line in data:
             file.write(line + "\n")
+    print(f"Custom filters written to {filename}")
 
 # Pihole v6 stores your custom DNS records in its pihole.toml file.
 def extract_custom_domains(filename):
@@ -192,8 +193,6 @@ def extract_custom_cnames(filename, output_file):
 
 
 def main():
-    # This is for later. I want to have it parse the current directory for pihole backup zip files and automatically extract them if it finds one.
-    # For now I'm going to just manually tell it where to find the databases so I'm not extracting this zip file 8 billion times. 
     # with zipfile.ZipFile(sys.argv, 'r') as zip_ref:
     #     zip_ref.extractall(cwd)
 
@@ -207,7 +206,7 @@ def main():
     write_adlists_to_yaml(gravity_db, 'adlists.yaml')
 
     domains = extract_domains(gravity_db)
-    write_lines_to_file('domains.txt', domains)
+    write_lines_to_file('custom_filters.txt', domains)
 
     if os.path.exists(pihole_toml):
         write_custom_domains_to_file(pihole_toml, 'custom_domains.yaml')
