@@ -1,0 +1,5 @@
+.venv
+etc/*
+*.txt
+pi-hole*.zip
+*.yaml
