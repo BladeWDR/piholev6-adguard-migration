@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 logger = logging.getLogger(__name__)
 
 DOMAIN_TYPE_MAPPING = {
-    0: {"prefix": "@@|", "suffix": "^", "description": "Exact allow"},
+    0: {"prefix": "@@|", "suffix": "^$important", "description": "Exact allow"},
     1: {"prefix": "0.0.0.0 ", "suffix": "", "description": "Exact blacklist"},
     2: {"prefix": "@@||", "suffix": "^", "description": "Regex allow"},
     3: {"prefix": "||", "suffix": "^", "description": "Regex blacklist"}
