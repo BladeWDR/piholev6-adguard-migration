@@ -205,8 +205,11 @@ def _print_instructions() -> None:
 
 
 def main():
-    # with zipfile.ZipFile(sys.argv, 'r') as zip_ref:
-    #     zip_ref.extractall(cwd)
+
+    cwd = os.getcwd()
+
+    with zipfile.ZipFile(sys.argv[1], 'r') as zip_ref:
+       zip_ref.extractall(cwd)
 
     gravity_db = './etc/pihole/gravity.db'
     pihole_toml = './etc/pihole/pihole.toml'
