@@ -191,6 +191,18 @@ def extract_custom_cnames(filename, output_file):
     except Exception as e:
         print(f"Error processing CNAMEs from {filename}: {e}")
 
+def _print_instructions() -> None:
+    """Print post-migration instructions."""
+    print("\n" + "="*60)
+    print("Next Steps:")
+    print("="*60)
+    print("1. Stop AdGuardHome with AdGuardHome -s stop")
+    print("2. Copy the contents of adlists.yaml into AdGuardHome.yaml under 'filters'")
+    print("4. custom_dns.yaml and dns_rewrites.yaml should both be copied into AdGuardHome.yaml under the 'rewrites' key.")
+    print("5. Start up AdGuardHome again with AdGuardHome -s start")
+    print("3. Copy rules from custom_filters.txt to Custom Filtering Rules")
+    print("="*60)
+
 
 def main():
     # with zipfile.ZipFile(sys.argv, 'r') as zip_ref:
@@ -214,6 +226,8 @@ def main():
         extract_custom_cnames(pihole_toml, 'rewrites.yaml')
     else:
         print(f"Warning: {pihole_toml} not found. Skipping custom domains and CNAMEs.")
+
+    _print_instructions()
 
 
 if __name__ == "__main__":
