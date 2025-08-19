@@ -3,3 +3,4 @@ etc/*
 *.txt
 pi-hole*.zip
 *.yaml
+pihole_backup/
