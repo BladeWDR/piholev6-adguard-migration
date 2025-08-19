@@ -9,7 +9,7 @@ This tool will take a Teleporter export and convert it into Adguard Home style y
 3. Install PyYAML and requests from pip.
 
    ```bash
-   pip install PyYAML requests
+   pip install PyYAML
    ```
 
 4. Also make sure you have `dnspython` installed
