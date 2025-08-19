@@ -6,7 +6,7 @@ This tool will take a Teleporter export and convert it into Adguard Home style y
 
 1. Export your Pihole Teleporter config from settings.
 2. Clone this repo.
-3. Install PyYAML and requests from pip.
+3. Install PyYAML from pip.
 
    ```bash
    pip install PyYAML
